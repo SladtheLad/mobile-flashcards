@@ -27,7 +27,7 @@
 - [ ] Individual Deck View
 
 ### Quiz View
-- [x] displays a card question
+- [ ] displays a card question
 - [ ] an option to view the answer (flips the card)
 - [ ] a "Correct" button
 - [ ] an "Incorrect" button
