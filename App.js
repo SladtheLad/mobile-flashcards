@@ -1,23 +1,46 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+// import { DeckListView } from './views/DeckListView'
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
-}
+import getData from './dummyDATA'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff'
   },
-});
+  card: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 40
+  },
+  number: {
+    fontSize: 30
+  }
+})
+
+const Deck = ({ title, questions }) => {
+  return (
+    <View style={styles.card}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.number}>{questions}</Text>
+    </View>
+  )
+}
+
+
+export default class App extends React.Component {
+
+  render() {
+    const decks = getData()
+
+    return (
+      <View style={styles.container}>
+      {decks.map(({ title, questions }) => <Deck key={title} title={title} questions={questions} />)}
+      </View>
+
+    );
+  }
+}
