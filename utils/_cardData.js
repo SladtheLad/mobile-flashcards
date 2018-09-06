@@ -1,8 +1,8 @@
-// import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native'
 
 export const DECKS_STORAGE_KEY = 'decks:mobile-flashcards'
 
-let data = {
+const data = {
   React: {
     title: 'React',
     questions: [
@@ -28,18 +28,15 @@ let data = {
   }
 }
 
-const getDecks = () => {
+
+export const initialData = () => {
+  AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
+  return data;
+}
+
+export const getDecks = () => {
   // return all of the decks along with their titleCase, questions, and answers
-}
-
-const getDeck = () => {
-  // take in a single id arg and return the deck associated that that id
-}
-
-const saveDeckTitle = () => {
-  // take in a single title arg and add it to the decks
-}
-
-const addCardToDeck = () => {
-  // take in title and card, and will add the card to the list of questions for the deck with associated title
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => {
+    return results === null ? initialData() : JSON.parse(results)
+  });
 }
