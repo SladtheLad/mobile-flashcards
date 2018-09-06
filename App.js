@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 // import { StyleSheet, Text, View } from 'react-native';
-import DeckListView from './views/DeckListView';
+import DeckListView from './views/DeckListView'
 
 
 
