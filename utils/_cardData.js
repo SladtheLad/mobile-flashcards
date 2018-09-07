@@ -35,8 +35,10 @@ export const initialData = () => {
 }
 
 export const getDecks = () => {
-  // return all of the decks along with their titleCase, questions, and answers
+  // return all of the decks along with their title, questions, and answers
   return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => {
     return results === null ? initialData() : JSON.parse(results)
   });
 }
+
+

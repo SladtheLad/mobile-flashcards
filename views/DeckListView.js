@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, FlatList, Platform, Animated, Easing } from 'react-native'
+// import { FlatList, Platform, Animated, Easing } from 'react-native'
 import styled from 'styled-components'
+// import { getDecks } from '../store/actions'
 
 import getData from '../dummyDATA'
 
+/**
+ * @description Styling for Components
+ */
 const Container = styled.View`
   flex: 1;
   background-color: #fff;
 `
-const DeckStyled = styled.View`
+const DeckStyled = styled.TouchableOpacity`
   margin-top: 40px;
   margin-bottom: 40px;
   align-items: center;
@@ -24,23 +28,35 @@ const DeckCount = styled.Text`
   font-weight: 400;
 `
 
-const Deck = ({ title, questions }) => {
-  return (
-    <DeckStyled>
-      <DeckTitle>Deck title: {title}</DeckTitle>
-      <DeckCount>Cards: {questions}</DeckCount>
-    </DeckStyled>
-  )
-}
+// //DUMMY DECK
+// const Deck = ({ title, questions }) => {
+//   return (
+//     <DeckStyled>
+//       <DeckTitle>Deck title: {title}</DeckTitle>
+//       <DeckCount>Cards: {questions}</DeckCount>
+//     </DeckStyled>
+//   )
+// }
 
 export default class DeckListView extends Component {
+  
+
 
   render() {
-    const decks = getData()
+    const deckInfo = getData()
 
     return (
       <Container>
-        {decks.map(({ title, questions }) => <Deck key={title} title={title} questions={questions} />)}
+        {Object.keys(deckInfo).map((key) => {
+          const { title, questions } = deckInfo[key]
+
+          return (
+            <DeckStyled key={key}>
+              <DeckTitle>Deck title: {title}</DeckTitle>
+              <DeckCount>Cards: {questions}</DeckCount>
+            </DeckStyled>
+          )
+        })}
       </Container>
     );
   }
